@@ -1,0 +1,61 @@
+package com.company;
+
+import java.util.Arrays;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        int[] nums1 = {1,3,};
+        int[] nums2 = {2,5,};
+        int[] nums3 = merge(nums1, nums2);
+        int[] nums4 = Sort(nums3);
+        System.out.println(Arrays.toString(nums4));
+        System.out.println(median(nums4));
+    }
+
+    static int[] merge (int[] arr1, int[] arr2){
+        int[] arr3 = new int[arr1.length + arr2.length];
+        int c = 0;
+        for (int i = 0; i < arr1.length; i++) {
+            arr3[i] = arr1[i];
+            c++;
+        }
+
+        for (int j = 0; j < arr2.length; j++) {
+            arr3[c++] = arr2[j];
+        }
+        return arr3;
+    }
+    
+    static int[] Sort (int[] arr){
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i+1; j < arr.length; j++) {
+                if (arr[i] > arr[j]) {
+                    swap(arr, i, j);
+                }
+            }
+
+        }
+        return arr;
+    }
+
+    static double median (int[] arr){
+        int start = 0;
+        int end = arr.length - 1;
+        int mid = start + (start + end) / 2;
+        if (arr.length % 2 == 0){
+           double p = arr[mid];
+           double q = arr[mid + 1];
+           return (p + q)/2;
+        }
+        return arr[mid];
+
+    }
+
+    static void swap (int[] arr, int first, int second){
+        int temp = arr[first];
+        arr[first] = arr[second];
+        arr[second] = temp;
+    }
+}
